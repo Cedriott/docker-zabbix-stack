@@ -1,9 +1,9 @@
 ## Este script implementa de forma automatica os containers abaixo:
 
-1. Zabbix Frontend
-2. Zabbix Backend
-3. MysqlServer
-4. Grafana
+1. Zabbix Frontend (zabbix-web-apache-mysql:alpine-latest)
+2. Zabbix Backend (zabbix-server-mysql:alpine-latest)
+3. MysqlServer (8.0.44-debian)
+4. Grafana (grafana:latest)
 
 ## 🚀 Como Usar
 
