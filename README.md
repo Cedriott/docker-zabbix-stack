@@ -1,3 +1,10 @@
+## Este script implementa de forma automatica os containers abaixo:
+
+1. Zabbix Frontend
+2. Zabbix Backend
+3. MysqlServer
+4. Grafana
+
 ## 🚀 Como Usar
 
 1.  **Clone o repositório:**
