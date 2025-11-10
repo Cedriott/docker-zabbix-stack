@@ -1,24 +1,25 @@
-# Stack Zabbix + Grafana com Docker
+## 🚀 Como Usar
 
-Este repositório sobe um ambiente completo do Zabbix e Grafana.
+1.  **Clone o repositório:**
+    ```bash
+    git clone [https://github.com/Cedriott/docker-zabbix-stack.git](https://github.com/Cedriott/docker-zabbix-stack.git)
+    ```
 
-## Pré-requisitos
-- Docker
-- Docker Compose
+2.  **Crie o arquivo de ambiente:**
+    Crie um arquivo chamado `.env` na raiz do projeto com o seguinte conteúdo:
 
-## Como usar
+    ```env
+    ZABBIX_DB_USER=SEU_USUARIO_DB
+    ZABBIX_DB_PASSWORD=SENHA_FORTE
+    ZABBIX_DB_ROOT_PASSWORD=SENHA_FORTE_ROOT
+    ```
 
-1. Clone o repositório:
-   `git clone https://github.com/Cedriott/docker-zabbix-stack.git`
+3.  **Inicie os serviços:**
+    ```bash
+    docker-compose up -d
+    ```
 
-2. Crie um arquivo `.env` com as senhas conforme variaveis abaixo:
-ZABBIX_DB_USER=SEU_USUARIO_DB
-ZABBIX_DB_PASSWORD=SENHA_FORTE
-ZABBIX_DB_ROOT_PASSWORD=SENHA_FORTE_ROOT
+## Endpoints (Acessos)
 
-3. Inicie os serviços:
-   `docker-compose up -d`
-
-## Acesso
-- **Zabbix:** `http://<ip-do-servidor>:8080`
-- **Grafana:** `http://<ip-do-servidor>:3000`
+* **Zabbix:** `http://<ip-do-servidor>:8081`
+* **Grafana:** `http://<ip-do-servidor>:3000`
