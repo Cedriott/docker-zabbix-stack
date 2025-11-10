@@ -1,0 +1,70 @@
+version: '3.8'
+services:
+  zabbix-front:
+    image: zabbix/zabbix-web-apache-mysql:alpine-latest
+    container_name: zabbix-front
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "443:443"
+    depends_on:
+      - zabbix-back
+    networks:
+      - zabbix-net
+    environment:
+      DB_SERVER_HOST: mysql-server
+      MYSQL_USER: "${ZABBIX_DB_USER}"
+      MYSQL_PASSWORD: "${ZABBIX_DB_PASSWORD}"
+      ZBX_SERVER_HOST: zabbix-back
+
+  zabbix-back:
+    image: zabbix/zabbix-server-mysql:alpine-latest
+    container_name: zabbix-back
+    restart: unless-stopped
+    ports:
+      - "10051:10051"
+    depends_on:
+      - mysql-server
+    networks:
+      - zabbix-net
+    environment:
+      DB_SERVER_HOST: mysql-server
+      MYSQL_USER: "${ZABBIX_DB_USER}"
+      MYSQL_PASSWORD: "${ZABBIX_DB_PASSWORD}"
+
+  mysql-server:
+    image: mysql:8.0.44-debian
+    container_name: mysql-server
+    restart: unless-stopped
+    ports:
+      - "33306:3306"
+    volumes:
+      - dados_mysql:/var/lib/mysql
+    networks:
+      - zabbix-net
+    environment:
+      MYSQL_DATABASE: "zabbix"
+      MYSQL_USER: "${ZABBIX_DB_USER}"
+      MYSQL_PASSWORD: "${ZABBIX_DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${ZABBIX_DB_ROOT_PASSWORD}"
+    command:
+      - --log-bin-trust-function-creators=1
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_bin
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+networks:
+  zabbix-net:
+    driver: bridge
+
+volumes:
+  dados_mysql:
+  grafana-data:
