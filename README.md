@@ -2,7 +2,7 @@
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/Cedriott/docker-zabbix-stack.git](https://github.com/Cedriott/docker-zabbix-stack.git)
+    git clone https://github.com/Cedriott/docker-zabbix-stack.git
     ```
 
 2.  **Crie o arquivo de ambiente:**
@@ -19,7 +19,7 @@
     docker-compose up -d
     ```
 
-## Endpoints (Acessos)
+## Acesso
 
-* **Zabbix:** `http://<ip-do-servidor>:8081`
+* **Zabbix:** `http://<ip-do-servidor>:8080`
 * **Grafana:** `http://<ip-do-servidor>:3000`
